@@ -11,16 +11,17 @@ class Vigenere {
     let keySize: Int
 
     init(alphabet: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", key: String) {
-        self.alphabet = alphabet
+        self.alphabet = alphabet.uppercased()
         self.alphabetSize = alphabet.characters.count
-        self.key = key
+        self.key = key.uppercased()
         self.keySize = key.characters.count
     }
 
     func encrypt(plainText: String) -> String {
         var encryptedText = ""
+        var index = 0
 
-        for (index, character) in plainText.characters.enumerated() {
+        for character in plainText.uppercased().characters {
             let indexInAlphabet = indexOfAlphabet(forCharacter: character)
 
             if indexInAlphabet == -1 {
@@ -32,6 +33,7 @@ class Vigenere {
             let keyIndexInAlphabet = indexOfAlphabet(forCharacter: keyToEncryptWith)
             let encryptedLetterIndex = (indexInAlphabet + keyIndexInAlphabet + alphabetSize) % alphabetSize
             encryptedText.append(alphabet[encryptedLetterIndex])
+            index += 1
         }
 
         return encryptedText
@@ -39,8 +41,9 @@ class Vigenere {
 
     func decrypt(encryptedText: String) -> String {
         var decryptedText = ""
+        var index = 0
 
-        for (index, character) in encryptedText.characters.enumerated() {
+        for character in encryptedText.uppercased().characters {
             let indexInAlphabet = indexOfAlphabet(forCharacter: character)
 
             if indexInAlphabet == -1 {
@@ -52,6 +55,7 @@ class Vigenere {
             let keyIndexInAlphabet = indexOfAlphabet(forCharacter: keyToEncryptWith)
             let encryptedLetterIndex = (indexInAlphabet - keyIndexInAlphabet + alphabetSize) % alphabetSize
             decryptedText.append(alphabet[encryptedLetterIndex])
+            index += 1
         }
 
         return decryptedText
