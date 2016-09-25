@@ -30,7 +30,7 @@ class Vigenere {
 
             let keyToEncryptWith = key[index % keySize]
             let keyIndexInAlphabet = indexOfAlphabet(forCharacter: keyToEncryptWith)
-            let encryptedLetterIndex = (indexInAlphabet + keyIndexInAlphabet) % alphabetSize
+            let encryptedLetterIndex = (indexInAlphabet + keyIndexInAlphabet + alphabetSize) % alphabetSize
             encryptedText.append(alphabet[encryptedLetterIndex])
         }
 
@@ -50,7 +50,7 @@ class Vigenere {
 
             let keyToEncryptWith = key[index % keySize]
             let keyIndexInAlphabet = indexOfAlphabet(forCharacter: keyToEncryptWith)
-            let encryptedLetterIndex = (indexInAlphabet - keyIndexInAlphabet) % alphabetSize
+            let encryptedLetterIndex = (indexInAlphabet - keyIndexInAlphabet + alphabetSize) % alphabetSize
             decryptedText.append(alphabet[encryptedLetterIndex])
         }
 
